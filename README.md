@@ -5,17 +5,22 @@ React Native implementation for Android Block Store
 ## Installation
 
 ```sh
-npm install react-native-block-store
+yarn add react-native-block-store
 ```
 
 ## Usage
 
 ```js
-import { multiply } from 'react-native-block-store';
+import BlockStore from 'react-native-block-store';
 
 // ...
 
-const result = await multiply(3, 7);
+const key = 'key1';
+const value = 'value1';
+
+const success = await BlockStore.save(key, value);
+const result = await BlockStore.retrieve(key);
+const isRemoved = await BlockStore.remove(key);
 ```
 
 ## Contributing
@@ -25,7 +30,3 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 ## License
 
 MIT
-
----
-
-Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)

@@ -24,6 +24,18 @@ const BlockStore = BlockStoreModule
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return BlockStore.multiply(a, b);
+export function save(
+  key: string,
+  value: string,
+  shouldBackupToCloud: boolean = false
+): Promise<boolean> {
+  return BlockStore.save(key, value, shouldBackupToCloud);
+}
+
+export function retrieve(key: string): Promise<string | null> {
+  return BlockStore.retrieve(key);
+}
+
+export function remove(key: string): Promise<boolean> {
+  return BlockStore.remove(key);
 }

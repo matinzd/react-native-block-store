@@ -7,5 +7,9 @@ import com.facebook.react.bridge.Promise
 abstract class BlockStoreSpec internal constructor(context: ReactApplicationContext) :
   ReactContextBaseJavaModule(context) {
 
-  abstract fun multiply(a: Double, b: Double, promise: Promise)
+  abstract fun save(key: String, value: String, shouldBackupToCloud: boolean, promise: Promise);
+
+  abstract fun retrieve(key: String, promise: Promise);
+
+  abstract fun remove(key: String, promise: Promise);
 }

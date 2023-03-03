@@ -1,18 +1,28 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-block-store';
+import { StyleSheet, View, Text, Button } from 'react-native';
+import { save, retrieve } from 'react-native-block-store';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  React.useEffect(() => {}, []);
 
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
+  const onSave = () => {
+    save('key1', 'value1').then((success) => {
+      console.log({ success });
+    });
+  };
+
+  const onRetrieve = () => {
+    retrieve('key1').then((result) => {
+      console.log('Result: ', { result });
+    });
+  };
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text>{'React Native Block Store'}</Text>
+      <Button title={'Save'} onPress={onSave} />
+      <Button title={'Retrieve'} onPress={onRetrieve} />
     </View>
   );
 }
@@ -22,6 +32,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    rowGap: 24,
   },
   box: {
     width: 60,
